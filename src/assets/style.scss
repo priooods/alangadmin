@@ -1,57 +1,270 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,900&display=swap');
 $light-primary: #fff;
 $light-secondary: #e1e1e1;
-$dark-primary: #0c0c0c;
-$dark-secondary: #393e46;
-$pink-primary: #ff97b8;
-$pink-secondary: #ffd880;
-$blue: #0061a8;
-$grey: #d8e3e7;
+$dark-primary: #151515;
+$dark-secondary: #222831;
+$pink-primary: #F4C4C4;
+$pink-secondary: #f14668;
+$pink-light-secondary: #ff90a6;
+$blue: #0779e4;
+$blue-secondary: #D1DEFF;
+$grey: #8b8b8b;
 
 #app.theme-light{
     background: $light-primary;
-    color: $dark-primary;
+    color: $dark-secondary;
+    h1{
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 700;
+    }
+    p,h6,h5,h4,h3,h2{
+        font-family: 'Work Sans', sans-serif;
+    }
 
+    .sider{
+        background: $light-primary;
+        box-shadow: 10px 0 30px -2px $light-secondary;
+    }
     a{
         color: $grey;
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 700;
         cursor: pointer;
         text-decoration: none;
     }
     a:hover{
-        color: $blue;
+        color: $dark-primary;
     }
     a.active{
-        color: $blue;
+        color: $dark-primary;
+    }
+    .cards-box{
+        cursor: pointer;
+        border-radius: 5px;
+        background: $light-primary;
+        p, h5{
+            color: $dark-secondary;
+        }
+    }
+
+    .cards-box.active , .cards-box:hover{
+        background: $light-primary;
+        box-shadow: 10px 8px 30px -2px rgb(206, 206, 206);
+    }
+
+    .ivu-table tr th, tr td{
+        background: $light-primary;
+        color: $dark-primary;
+    }
+
+    .boxs{
+        background: $light-primary;
+        box-shadow: 10px 8px 30px -2px rgb(206, 206, 206);
+        color: $dark-primary;
+    }
+
+    .tab{
+       color: $grey;
+    }
+    .tab.active{
+        color: $dark-primary;
+        .tab-indicator{
+            background: $dark-primary;
+        }
+    }
+    .btn-prio{
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        color: $light-secondary;
+        font-weight: 700;
+        background: $dark-secondary;
+    }
+    .btn-prio:hover{
+        background: $dark-primary;
     }
 }
 
 #app.theme-dark{
     background: $dark-primary;
     color: $light-secondary;
+    h1{
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 700;
+    }
+    p,h6,h5,h4,h3,h2{
+        font-family: 'Work Sans', sans-serif;
+    }
+    .sider{
+        background: $dark-primary;
+        box-shadow: 10px 0 30px -2px rgb(15, 15, 15);
+    }
     a{
         color: $grey;
         cursor: pointer;
         text-decoration: none;
     }
     a:hover{
-        color: $blue;
+        color: $light-secondary;
     }
     a.active{
-        color: $blue;
+        color: $light-secondary;
+    }
+
+    .cards-box{
+        cursor: pointer;
+        border-radius: 5px;
+        background: $dark-secondary;
+        p, h5{
+            color: $light-secondary;
+        }
+    }
+    .cards-box.active , .cards-box:hover{
+        background: $dark-primary;
+        box-shadow: 10px 8px 30px -2px rgb(0, 0, 0);
+        p, h5{
+            color: $light-secondary;
+        }
+    }
+    
+    .ivu-table tr th, tr td{
+        background: $dark-primary;
+        color: $light-secondary;
+    }
+    .boxs{
+        background: $dark-primary;
+        box-shadow: 10px 8px 30px -2px rgb(14, 14, 14);
+        color: $light-secondary;
+    }
+    .tab{
+       color: $grey;
+       .tab-indicator{
+            background: $grey;
+        }
+    }
+    .tab.active{
+        color: $light-secondary;
+        .tab-indicator{
+            background: $light-secondary;
+        }
+    }
+    .ivu-form-item label{
+        color: $light-primary;
+    }
+    .btn-prio{
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        color: $dark-secondary;
+        font-weight: 700;
+        background: $light-secondary;
+    }
+    .btn-prio:hover{
+        background: $light-primary;
     }
 }
 #app.theme-pink{
-    background: $pink-primary;
-    color: $dark-primary;
+    background: $pink-secondary;
+    color: $light-secondary;
+    h1{
+        font-family: 'Work Sans', sans-serif;
+        font-weight: 700;
+    }
+    p,h6,h5,h4,h3,h2{
+        font-family: 'Work Sans', sans-serif;
+    }
+    .sider{
+        background: $pink-secondary;
+        box-shadow: 10px 0 30px -2px #e02047;
+    }
     a{
-        color: $grey;
+        color: $pink-primary;
         cursor: pointer;
         text-decoration: none;
     }
     a:hover{
-        color: $dark-primary;
+        color: $light-primary;
     }
     a.active{
-        color: $dark-primary;
+        color: $light-primary;
     }
+
+    .cards-box{
+        cursor: pointer;
+        border-radius: 5px;
+        background: $pink-light-secondary;
+        p, h5{
+            color: $pink-secondary;
+        }
+    }
+
+    .cards-box.active , .cards-box:hover{
+        background: $pink-secondary;
+        box-shadow: 10px 8px 30px -2px #e02047;
+        p, h5{
+            color: $light-secondary;
+        }
+    }
+
+    .ivu-table tr th, tr td{
+        background: $pink-secondary;
+        color: $light-secondary;
+    }
+    .ivu-tabs-card .ivu-tabs-bar .ivu-tabs-tab{
+        color: $pink-secondary;
+        font-weight: 700;
+        border-color: transparent;;
+        background: transparent !important;
+    }
+    .ivu-tabs-card .ivu-tabs-bar .ivu-tabs-tab-active{
+        color: $dark-primary;
+        border-left: 1px solid #F4C4C4 !important;
+        border-top: 1px solid #F4C4C4 !important;
+        border-right: 1px solid #F4C4C4 !important;
+        border-bottom: 2px solid #f14668 !important;
+    }
+    .pages{
+        background: $pink-secondary !important;
+        color: $dark-secondary !important;
+    }
+
+    .boxs{
+        background: $pink-secondary;
+        box-shadow: 10px 8px 30px -2px #e02047;
+        color: $light-primary;
+    }
+    .tab{
+       color: $pink-light-secondary;
+       .tab-indicator{
+            background: $pink-light-secondary;
+        }
+    }
+    .tab.active{
+        color: $light-secondary;
+        .tab-indicator{
+            background: $light-secondary;
+        }
+    }
+    .ivu-form-item label{
+        color: $light-primary;
+    }
+    .btn-prio{
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        color: $pink-secondary;
+        font-weight: 700;
+        background: $pink-primary;
+    }
+    .btn-prio:hover{
+        background: $light-primary;
+    }
+}
+::-webkit-scrollbar {
+    width: 1px;
+    background: transparent !important;
+}
+    ::-webkit-scrollbar-thumb {
+    background: $blue;
+    border-radius: 50px;
 }

@@ -1,10 +1,11 @@
 <template>
   <div id="app" v-bind:class="themes">
-    <router-view/>
+    <router-view class="h-auto" @changetheme="changeTheme"/>
   </div>
 </template>
 
 <script>
+import cookies from "vue-cookies";
 export default {
   data() {
     return {
@@ -17,22 +18,25 @@ export default {
     }
   },
   methods: {
-    changeTheme(){
-      switch (this.themeOptions) {
-        case this.themeOptions.dark:
+    changeTheme(val){
+      switch (val) {
+        case 'theme-dark':
           this.themes = this.themeOptions.dark;
           break;
-        case this.themeOptions.pink:
+        case 'theme-pink':
           this.themes = this.themeOptions.pink;
           break;
-        case this.themeOptions.light:
+        case 'theme-light':
           this.themes = this.themeOptions.light;
           break;
         default:
-          this.themes = this.themeOptions.light;
+          this.themes = val;
           break;
       }
     }
+  },
+  mounted() {
+    this.changeTheme(cookies.get('theme'));
   },
 }
 </script>

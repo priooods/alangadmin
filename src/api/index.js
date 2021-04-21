@@ -1,6 +1,6 @@
 import axios from "axios";
 const client = axios.create({
-  baseURL: "https://digitalsystemindo.com/khairo/public/api/",
+  baseURL: "https://jajandong.com/alangdatabase/public/api/auth/",
 });
 
 export default client;
