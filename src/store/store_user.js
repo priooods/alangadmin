@@ -11,10 +11,9 @@ export default {
       User.LoginUser(data).then((res) => {
         if (res.data.error_code == 0) {
           commit("user", res.data.data);
-          cookies.set("id", res.data.data.id);
           cookies.set("token", res.data.data.token);
           cookies.set("next", 1);
-          return cookies.set("name", res.data.data.name);
+          return true;
         }
         cookies.set("next", 0);
         return false;
@@ -28,25 +27,32 @@ export default {
         return false;
       });
     },
-    // DeleteMitra({ dispatch }, data) {
-    //   Mitra.deletemitra(data).then((res) => {
-    //     if (res.data.error_code == 0) {
-    //       cookies.set("next", 1);
-    //       return dispatch("AllMitra");
-    //     }
-    //     return cookies.set("next", 0);
-    //   });
-    // },
-    // AllMitra({ commit }) {
-    //   Mitra.allmitra().then((data) => {
-    //     return commit("mitrall", data.data.data);
-    //   });
-    // },
-    // AllCabang({ commit }) {
-    //   Mitra.allCabang().then((data) => {
-    //     return commit("cabangall", data.data.data);
-    //   });
-    // },
+    UpdateUser({ dispatch }, data) {
+      User.UpdateUser(data).then((res) => {
+        if (res.data.error_code == 0) {
+          cookies.set("next", 1);
+          console.log(res.data.data);
+          dispatch("Me");
+          return dispatch("AllUsers");
+        }
+        return cookies.set("next", 0);
+      });
+    },
+    Me({ commit }) {
+      User.MeUser(cookies.get("token")).then((data) => {
+        return commit("user", data.data.data);
+      });
+    },
+    UpdateDetail({ dispatch }, data) {
+      User.UpdateDetail(data).then((res) => {
+        if (res.data.error_code == 0) {
+          cookies.set("next", 1);
+          dispatch("Me");
+          return dispatch("AllUsers");
+        }
+        return cookies.set("next", 0);
+      });
+    },
     // AddCabang({ dispatch }, form) {
     //   Mitra.addCabang(form).then((data) => {
     //     if (data.data.error_code == 0) {

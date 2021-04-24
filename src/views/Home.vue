@@ -4,14 +4,14 @@
       <h1 class="font-bold text-xl mr-auto hidden md:block">Dashboard</h1>
       <h6 class="hidden md:block my-auto font-medium">{{$store.state.users.user.fullname}}</h6>
       <vs-avatar circle class="hidden md:block mr-4 ml-2" size="25">
-        <img v-if="$store.state.users.user.avatar" src="../assets/avatar.png" alt="">
+        <img v-if="$store.state.users.user.avatar" :src="'https://jajandong.com/alangdatabase/public/images/' + $store.state.users.user.avatar" alt="">
         <img v-else src="../assets/avatar.png" alt="">
       </vs-avatar>
     </div>
     <div class="mt-5 grid md:grid-cols-4 grid-rows-4 md:grid-rows-1 grid-flow-col gap-2">
-      <div class="p-3 cards-box" @click="boxactive = 1;totalpage = 10;" :class="{ active: boxactive == 1 }">
+      <div class="p-3 cards-box" :class="{ active: boxactive == 1 }">
         <p class="font-semibold text-xs">Total Proker Alang Terdaftar</p>
-        <h5 class="font-semibold text-base mt-5">Proker</h5>
+        <h5 class="font-semibold text-base mt-5">{{prokers.length}} Proker</h5>
       </div>
       <div class="p-3 cards-box" @click="boxactive = 2;totalpage = $store.state.users.userall.length/5 * 10;" :class="{ active: boxactive == 2 }">
         <p class="font-semibold text-xs">Total Anggota Alang Terdaftar</p>
@@ -23,8 +23,12 @@
       </div>
     </div>
     <div class="grid grid-rows-1 mt-10" v-if="boxactive == 2">
-      <p class="mb-5">Lihat Semua Anggota yang terdaftar. Tap pada item untuk melihat detail pada baris table</p>
-      <Table border stripe :columns="Anggota" size="small" :data="tableanggota"></Table>
+      <p class="mb-5">Lihat Semua Anggota yang terdaftar. Tap pada item Instagram untuk pergi ke halaman profile instagram</p>
+      <Table border stripe :columns="Anggota" size="small" :data="tableanggota">
+        <template class="cursor-pointer" slot-scope="{ row }" slot="sosmed">
+            <span class="cursor-pointer" @click="showmed(row.sosmed)">{{ row.sosmed }}</span>
+        </template>
+      </Table>
       <div style="margin: 10px;overflow: hidden">
           <div style="float: right;">
               <Page :total="totalpage" class="pages" class-name="pages" :current="1" size="small"  @on-change="setPageAnggota"></Page>
@@ -64,11 +68,18 @@ export default {
     department() {
       return this.$store.state.department.departmentall;
     },
+    prokers() {
+      return this.$store.state.proker.prokerall;
+    },
   },
   methods:{
     setPageAnggota(val){
         return this.tableanggota = this.dataAnggota.slice((val - 1) * 5, val * 5);
     },
+    showmed(value){
+      var name = value.split("@");
+      window.location.href = "https://instagram.com/" + name[1];
+    }
   },
   mounted() {
       this.setPageAnggota(1);

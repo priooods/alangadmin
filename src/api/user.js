@@ -7,4 +7,13 @@ export default {
   SemuaUser() {
     return client.get("user/userall");
   },
+  UpdateUser(data) {
+    return client.post("user/update", data);
+  },
+  UpdateDetail(data) {
+    return client.post("user/detail/update", data);
+  },
+  MeUser(token) {
+    return client.post("user/me", { token: token });
+  },
 };

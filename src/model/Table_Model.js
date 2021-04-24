@@ -42,6 +42,7 @@ export default {
         {
           title: "Instagram",
           key: "sosmed",
+          slot: "sosmed",
           width: 140,
         },
       ],

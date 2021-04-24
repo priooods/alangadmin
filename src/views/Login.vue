@@ -35,12 +35,6 @@ export default {
                 } 
                 return false;
             })
-            // if(this.form.name.length <= 2 || this.form.password <= 2){
-            //     this.loading.close();
-            //     return this.helper_form();
-            // }
-            // this.$store.dispatch('users/LoginPengguna', this.form);
-            // this.helper_request_login();
         }
     },
 }

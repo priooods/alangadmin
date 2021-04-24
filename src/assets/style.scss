@@ -75,7 +75,7 @@ $grey: #8b8b8b;
     .btn-prio{
         text-align: center;
         cursor: pointer;
-        border-radius: 4px;
+        border-radius: 7px;
         color: $light-secondary;
         font-weight: 700;
         background: $dark-secondary;
@@ -154,7 +154,7 @@ $grey: #8b8b8b;
     .btn-prio{
         text-align: center;
         cursor: pointer;
-        border-radius: 4px;
+        border-radius: 7px;
         color: $dark-secondary;
         font-weight: 700;
         background: $light-secondary;
@@ -251,7 +251,7 @@ $grey: #8b8b8b;
     .btn-prio{
         text-align: center;
         cursor: pointer;
-        border-radius: 4px;
+        border-radius: 7px;
         color: $pink-secondary;
         font-weight: 700;
         background: $pink-primary;
@@ -261,10 +261,10 @@ $grey: #8b8b8b;
     }
 }
 ::-webkit-scrollbar {
-    width: 1px;
+    width: 2px;
     background: transparent !important;
 }
-    ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: $blue;
     border-radius: 50px;
 }

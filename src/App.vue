@@ -29,14 +29,17 @@ export default {
         case 'theme-light':
           this.themes = this.themeOptions.light;
           break;
-        default:
-          this.themes = val;
-          break;
+        // default:
+        //   this.themes = val;
+        //   break;
       }
     }
   },
   mounted() {
     this.changeTheme(cookies.get('theme'));
+  },
+  created() {
+    this.changeTheme("theme-light");
   },
 }
 </script>

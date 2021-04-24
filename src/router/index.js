@@ -4,7 +4,9 @@ import cookies from "vue-cookies";
 import Login from "../views/Login.vue";
 import Base from "../views/Base.vue";
 import Home from "../views/Home.vue";
+import Proker from "../views/Proker.vue";
 import Profile from "../views/Profile.vue";
+import Department from "../views/Department.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,6 +30,16 @@ const routes = [
         name: "Profile",
         component: Profile,
       },
+      {
+        path: "proker",
+        name: "Proker",
+        component: Proker,
+      },
+      {
+        path: "department",
+        name: "Department",
+        component: Department,
+      },
     ],
   },
 ];
@@ -49,11 +61,7 @@ router.beforeEach((to, from, next) => {
     cookies.keys().forEach((cookie) => cookies.remove(cookie));
     return next();
   }
-  if (
-    cookies.get("id") == null ||
-    cookies.get("token") == null ||
-    cookies.get("name") == null
-  ) {
+  if (cookies.get("next") == null || cookies.get("token") == null) {
     return next({ name: "Login" });
   } else {
     return next();

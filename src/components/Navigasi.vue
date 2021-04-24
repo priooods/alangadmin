@@ -8,6 +8,18 @@
               </router-link>
           </div>
           <div class="menus mt-4">
+              <router-link to="/admin/proker" class="flex">
+                <i class='bx bx-library bx-sm'></i>
+                <p class="md:text-base font-bold my-auto ml-4">Proker</p>
+              </router-link>
+          </div>
+          <div class="menus mt-4">
+              <router-link to="/admin/department" class="flex">
+                <i class='bx bx-building-house bx-sm'></i>
+                <p class="md:text-base font-bold my-auto ml-4">Department</p>
+              </router-link>
+          </div>
+          <div class="menus mt-4">
               <router-link to="/admin/profile" class="flex">
                 <i class='bx bx-user bx-sm'></i>
                 <p class="md:text-base font-bold my-auto ml-4">Profile</p>
