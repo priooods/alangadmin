@@ -7,4 +7,7 @@ export default {
   AddProker(data) {
     return client.post("proker/add", data);
   },
+  AddKomentar(data) {
+    return client.post("proker/koment/add", data);
+  },
 };

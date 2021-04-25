@@ -83,6 +83,10 @@ $grey: #8b8b8b;
     .btn-prio:hover{
         background: $dark-primary;
     }
+
+    .bg-koment{
+        background: $light-primary;
+    }
 }
 
 #app.theme-dark{
@@ -161,6 +165,9 @@ $grey: #8b8b8b;
     }
     .btn-prio:hover{
         background: $light-primary;
+    }
+    .bg-koment{
+        background: $dark-primary;
     }
 }
 #app.theme-pink{
@@ -258,6 +265,9 @@ $grey: #8b8b8b;
     }
     .btn-prio:hover{
         background: $light-primary;
+    }
+    .bg-koment{
+        background: $pink-secondary;
     }
 }
 ::-webkit-scrollbar {

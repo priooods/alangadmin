@@ -28,16 +28,18 @@
             </div>
           </div>
         </div>
-        <div class="boxs md:p-2 account-info grid grid-cols-3 gap-2" v-show="tabactive == 1">
-          <div v-for="(item,index) in prokers" v-bind:key="index">
-            <div class="cards-box md:p-3 h-auto">
-                <h5 class="font-bold text-sm">{{item.judul}}</h5>
-                <p class="md:mt-1">{{item.department.departemen}}</p>
-                <p class="md:mt-2">{{item.ketua}}</p>
-                <p>
-                    {{item.tgl_mulai | moment('timezone','Asia/Jakarta', 'DD-MMMM-yyyy')}} - 
-                    {{item.tgl_selesai | moment('timezone','Asia/Jakarta', 'DD-MMMM-yyyy')}}
-                </p>
+        <div v-show="tabactive == 1">
+          <div class="boxs md:p-2 account-info grid grid-cols-3 gap-2" v-if="prokers">
+            <div v-for="(item,index) in prokers" v-bind:key="index">
+              <div class="cards-box md:p-3 h-auto">
+                  <h5 class="font-bold text-sm">{{item.judul}}</h5>
+                  <p class="md:mt-1">{{item.department.departemen}}</p>
+                  <p class="md:mt-2">{{item.ketua}}</p>
+                  <p>
+                      {{item.tgl_mulai | moment('timezone','Asia/Jakarta', 'DD-MMMM-yyyy')}} - 
+                      {{item.tgl_selesai | moment('timezone','Asia/Jakarta', 'DD-MMMM-yyyy')}}
+                  </p>
+              </div>
             </div>
           </div>
         </div>

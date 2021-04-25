@@ -4,6 +4,7 @@ export default {
   namespaced: true,
   state: {
     user: [],
+    newuser: [],
     userall: [],
   },
   actions: {
@@ -53,33 +54,26 @@ export default {
         return cookies.set("next", 0);
       });
     },
-    // AddCabang({ dispatch }, form) {
-    //   Mitra.addCabang(form).then((data) => {
-    //     if (data.data.error_code == 0) {
-    //       cookies.set("next", 1);
-    //       return dispatch("AllCabang");
-    //     }
-    //     return cookies.set("next", 0);
-    //   });
-    // },
-    // UpdateCabang({ commit }, form) {
-    //   Mitra.updateCabang(form).then((data) => {
-    //     if (data.data.error_code == 0) {
-    //       cookies.set("next", 1);
-    //       return commit("updatecabang", data.data.data);
-    //     }
-    //     return cookies.set("next", 0);
-    //   });
-    // },
-    // DeleteCabang({ commit }, form) {
-    //   Mitra.deleteCabang(form).then((data) => {
-    //     if (data.data.error_code == 0) {
-    //       cookies.set("next", 1);
-    //       return commit("deletecabang", form);
-    //     }
-    //     return cookies.set("next", 0);
-    //   });
-    // },
+    AddUsers({ commit }, form) {
+      User.Register(form).then((data) => {
+        console.log(data.data.data);
+        if (data.data.error_code == 0) {
+          cookies.set("next", 1);
+          return commit("newuser", data.data.data);
+        }
+        return cookies.set("next", 0);
+      });
+    },
+    AddDetail({ commit }, form) {
+      User.AddDetail(form).then((data) => {
+        console.log(data.data.data);
+        if (data.data.error_code == 0) {
+          cookies.set("next", 1);
+          return commit("newuser", data.data.data);
+        }
+        return cookies.set("next", 0);
+      });
+    },
   },
   mutations: {
     user(state, payload) {
@@ -88,17 +82,8 @@ export default {
     userall(state, payload) {
       state.userall = payload;
     },
-    // cabangall(state, payload) {
-    //   state.cabangall = payload;
-    // },
-    // updatecabang(state, payload) {
-    //   var index = state.cabangall.findIndex((x) => x.id === payload.id);
-    //   state.cabangall.splice(index, 1, payload);
-    //   return this.commit("mitra/cabangall", state.cabangall);
-    // },
-    // deletecabang(state, payload) {
-    //   var adm = state.cabangall.findIndex((e) => e.id === payload.id);
-    //   return state.cabangall.splice(adm, 1);
-    // },
+    newuser(state, payload) {
+      state.newuser = payload;
+    },
   },
 };

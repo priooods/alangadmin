@@ -6,7 +6,7 @@
             <p class="my-auto ml-2">Kembali</p>
           </div>
           <div class="md:flex md:mt-5">
-              <div class="md:w-2/6">
+              <div class="md:w-2/6 md:sticky top-10 h-full">
                 <h5 class="font-medium text-sm mb-2">{{data.judul}}</h5>
                 <p v-if="datas.department">{{datas.department.departemen}}</p>
                 <div class="md:mt-5 mt-4 grid md:grid-cols-2 md:gap-2">
@@ -32,9 +32,28 @@
                 </div>
               </div>
               <div class="md:w-4/6 md:ml-2 h-full md:pb-2">
-                <h5 class="font-medium text-sm mb-2">Komentar</h5>
-                <!-- <div v-for="(it)"></div> -->
-                <div class="sticky bottom-0">
+                <h5 class="font-medium text-sm mb-3">Komentar</h5>
+                <div v-if="datas.komentar">
+                    <div class="block mb-5" v-for="(items, index) in komentars" v-bind:key="index">
+                        <div class="flex justify-start">
+                            <vs-avatar circle size="30" class="avatar my-auto">
+                                <img v-if="items.detailuser" :src="'https://jajandong.com/alangdatabase/public/images/' + items.detailuser.avatar" alt="avatar">
+                                <img v-else src="../assets/avatar.png" alt="">
+                            </vs-avatar>
+                            <div class="my-auto ml-3">
+                                <p class="font-medium">{{items.detailuser.fullname}}</p>
+                                <p>{{items.created_at | moment('timezone', 'Asia/Jakarta', 'DD MMMM yyyy')}}</p>
+                            </div>
+                        </div>
+                        <div class="md:mt-2">
+                            <p>{{items.komentar}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="datas.komentar == null || datas.komentar.length == 0" class="flex justify-center md:my-7 my-5">
+                    <p>Belum ada Komentar. Tambah komentar untuk jadi yang pertama</p>
+                </div>
+                <div class="md:sticky bottom-0 z-10 py-3 bg-koment">
                     <div class="flex justify-start">
                         <vs-avatar circle size="30" class="avatar my-auto">
                             <img v-if="$store.state.users.user.avatar" :src="'https://jajandong.com/alangdatabase/public/images/' + $store.state.users.user.avatar" alt="avatar">
@@ -45,12 +64,14 @@
                             <p>{{$store.state.users.user.departemen.departemen}}</p>
                         </div>
                     </div>
-                    <Form class="mt-2">
-                        <FormItem prop="comment">
-                            <Input v-model="komen" type="textarea" placeholder="Komentar ku ..."/>
+                    <Form class="mt-2" ref="formkomen" :model="formkomen" :rules="formvalidator">
+                        <FormItem prop="komentar">
+                            <Input :maxlength="800" v-model="formkomen.komentar" type="textarea" placeholder="Komentar ku ..."/>
                         </FormItem>
                     </Form>
-                    <div class="btn-prio float-right py-1 px-3">Kirim</div>
+                    <div class="flex justify-end">
+                        <div class="btn-prio py-2 w-1/6 px-3" @click="KirimKomentar">Kirim</div>
+                    </div>
                 </div>
               </div>
           </div>
@@ -67,20 +88,49 @@ export default {
     },
     data() {
         return {
-            komen: '',
             formkomen: {
-                comment : ''
+                komentar : '',
+                user_id: this.$store.state.users.user.id,
+                proker_id: null
+            },
+            formvalidator: {
+                komentar: [
+                    {
+                        required: true,
+                        message: "Harap Masukan Komentar Kamu Untuk Proker",
+                        trigger: "blur",
+                    },
+                ],
             }
         }
     },
     computed:{
         datas(){
             return {...this.data}
+        },
+        komentars(){
+            return {...this.data.komentar};
         }
     },
     methods: {
         close(){
+            this.formkomen.komentar = '';
             return this.$emit('closeable', 1);
+        },
+        KirimKomentar(){
+            this.$refs['formkomen'].validate((valid) => {
+                if(valid){
+                    this.formkomen.proker_id = this.datas.id;
+                    this.$store.dispatch('proker/AddKomentar', this.formkomen);
+                    this.formkomen.komentar = '';
+                    return this.$Message.success({
+                        content: "Berhasil disimpan, Refresh halaman untuk melihat komen terbaru",
+                        duration: 6,
+                    });
+                } else {
+                    return false;
+                }
+            })
         }
     },
 }

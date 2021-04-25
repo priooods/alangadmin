@@ -20,6 +20,13 @@ export default {
         }
       });
     },
+    AddKomentar({ dispatch }, form) {
+      Proker.AddKomentar(form).then((data) => {
+        if (data.data.error_code == 0) {
+          return dispatch("ProkerAll");
+        }
+      });
+    },
   },
   mutations: {
     proker(state, payload) {

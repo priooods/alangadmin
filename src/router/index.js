@@ -7,6 +7,7 @@ import Home from "../views/Home.vue";
 import Proker from "../views/Proker.vue";
 import Profile from "../views/Profile.vue";
 import Department from "../views/Department.vue";
+import Register from "../views/Register.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -42,6 +43,11 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/register/",
+    name: "Register",
+    component: Register,
+  },
 ];
 
 const router = new VueRouter({
@@ -57,6 +63,9 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
+  if (to.path === "/register") {
+    return next();
+  }
   if (to.path === "/") {
     cookies.keys().forEach((cookie) => cookies.remove(cookie));
     return next();

@@ -16,4 +16,10 @@ export default {
   MeUser(token) {
     return client.post("user/me", { token: token });
   },
+  Register(data) {
+    return client.post("user/register", data);
+  },
+  AddDetail(data) {
+    return client.post("user/detail/add", data);
+  },
 };

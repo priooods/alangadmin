@@ -19,7 +19,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-1/6 md:ml-4 sticky top-4">
+                <div class="w-1/6 md:ml-4 h-full sticky top-15" v-if="$store.state.users.user.access_id == 2 
+                || $store.state.users.user.access_id == 4 || $store.state.users.user.access_id == 5 || $store.state.users.user.access_id == 1">
                     <div class="btn-prio py-2" @click="showing = 2">Tambah Proker</div>
                 </div>
             </div>
