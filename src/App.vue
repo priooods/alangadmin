@@ -29,9 +29,6 @@ export default {
         case 'theme-light':
           this.themes = this.themeOptions.light;
           break;
-        // default:
-        //   this.themes = val;
-        //   break;
       }
     }
   },

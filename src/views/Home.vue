@@ -1,5 +1,5 @@
 <template>
-  <div class="home layout">
+  <div class="home layout md:py-3">
     <div class="md:flex justify-end pt-4 md:pt-0">
       <h1 class="font-bold text-xl mr-auto hidden md:block">Dashboard</h1>
       <h6 class="hidden md:block my-auto font-medium">{{$store.state.users.user.fullname}}</h6>
@@ -79,15 +79,15 @@ export default {
     showmed(value){
       var name = value.split("@");
       window.location.href = "https://instagram.com/" + name[1];
-    }
+    },
   },
   mounted() {
       this.setPageAnggota(1);
   },
   created() {
+    this.$store.dispatch('users/AllUsers');
     this.$store.dispatch('department/DepartmentAll');
     this.$store.dispatch('proker/ProkerAll');
-    this.$store.dispatch('users/AllUsers');
   },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="profile md:py-3">
     <div class="md:flex">
       <div class="md:w-4/6 w-full">
         <div class="h-36 relative boxs-bg-img"></div>

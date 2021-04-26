@@ -13,7 +13,7 @@
           <div class="theme cursor-pointer w-3 h-3 bg-white cursor-pointer" @click="changetheme('theme-light')"></div>
         </div>
       </div>
-      <div class="relative md:min-h-screen ml-auto md:w-5/6 w-screen md:px-5 md:py-3 px-3">
+      <div class="relative md:min-h-screen ml-auto md:w-5/6 w-screen md:px-5 px-3">
         <router-view></router-view>
       </div>
     </div>

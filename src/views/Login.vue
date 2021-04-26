@@ -21,10 +21,33 @@
 
 <script>
 import Notifikasi from '../model/Notifikasi';
-import Form from '../model/Form';
 export default {
-    mixins: [Notifikasi,Form],
-    name: "login",
+    mixins: [Notifikasi],
+    name: "Login",
+    data() {
+        return {
+            form: {
+                name: "",
+                password: "",
+            },
+            formValidation: {
+                name: [
+                    {
+                    required: true,
+                    message: "Harap Masukan Username Kamu",
+                    trigger: "blur",
+                    },
+                ],
+                password: [
+                    {
+                    required: true,
+                    message: "Harap Masukan Password Kamu",
+                    trigger: "blur",
+                    },
+                ],
+            },
+        }
+    },
     methods: {
         login(){
             this.$refs['loginform'].validate((valid) => {

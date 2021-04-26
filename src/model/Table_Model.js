@@ -31,7 +31,7 @@ export default {
         },
         {
           title: "Department",
-          key: "departemen",
+          key: "department",
           ellipsis: true,
         },
         {
@@ -46,6 +46,22 @@ export default {
           width: 140,
         },
       ],
+      MyDepartment: [
+        {
+          title: "No",
+          key: "index",
+          width: 55,
+        },
+        {
+          title: "Nama Lengkap",
+          key: "fullname",
+        },
+        {
+          title: "Access",
+          key: "access",
+          width: 100,
+        },
+      ],
     };
   },
   computed: {
@@ -54,7 +70,7 @@ export default {
         ...items,
         motto: items.detail.motto,
         sosmed: items.detail.sosmed,
-        departemen: items.detail.department.departemen,
+        department: items.detail.department ? items.detail.department.departemen : '---',
         index: index + 1,
       }));
     },
@@ -71,6 +87,23 @@ export default {
           index: index + 1,
         }));
       }
+    },
+    allbydepartment() {
+      return this.$store.state.users.userall.filter((e) => {
+        return e.detail.department.departemen ===
+          this.$store.state.users.user.departemen.departemen
+          
+      });
+    },
+    bydepartment() {
+      return this.allbydepartment.map((items, index) => ({
+        ...items,
+        index: index + 1,
+        access: items.access.access,
+      }));
+    },
+    pagesbydepart() {
+      return (this.bydepartment.length / 5) * 10;
     },
   },
 };

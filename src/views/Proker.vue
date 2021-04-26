@@ -1,6 +1,6 @@
 <template>
     <div class="proker">
-        <div v-show="showing == 1">
+        <div v-show="showing == 1" class="md:py-3">
             <h1 class="font-bold text-xl hidden md:block">Proker</h1>
             <p class="hidden md:block">Tap item untuk melihat detail dan memberi komentar</p>
             <div class="md:flex md:mt-7">

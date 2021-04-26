@@ -61,7 +61,6 @@ const router = new VueRouter({
   },
 });
 
-
 router.beforeEach((to, from, next) => {
   if (to.path === "/register") {
     return next();
@@ -71,7 +70,7 @@ router.beforeEach((to, from, next) => {
     return next();
   }
   if (cookies.get("next") == null || cookies.get("token") == null) {
-    return next({ name: "Login" });
+    return next({ path: "/" });
   } else {
     return next();
   }

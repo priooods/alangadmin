@@ -125,12 +125,12 @@ export default {
                 contact: '',
             },
             department: [
-                { value: 'Chief Exceutive Organizational', label: 'Chief Exceutive Organizational' },
-                { value: 'Chief Financial Officer', label: 'Chief Financial Officer' },
-                { value: 'Chief Operating Organizational', label: 'Chief Operating Organizational' },
-                { value: 'Human and Organizational Resource Development', label: 'Human and Organizational Resource Development' },
-                { value: 'Learning and Curriculum Development', label: 'Learning and Curriculum Development' },
-                { value: 'Media and Design Management', label: 'Media and Design Management' },
+                { value: 1, label: 'Chief Exceutive Organizational' },
+                { value: 3, label: 'Chief Financial Officer' },
+                { value: 2, label: 'Chief Operating Organizational' },
+                { value: 5, label: 'Human and Organizational Resource Development' },
+                { value: 4, label: 'Learning and Curriculum Development' },
+                { value: 6, label: 'Media and Design Management' },
             ],
             rulesdetail:{
                 alamat: [
@@ -157,6 +157,7 @@ export default {
             var formData = new FormData();
             formData.append('name', this.formItem.name);
             formData.append('fullname', this.formItem.fullname);
+            formData.append('type', 'Pengguna');
             formData.append('password', this.formItem.password);
             formData.append('gender', this.formItem.gender);
             if(this.avatar != null){
@@ -180,6 +181,7 @@ export default {
             formData.append('user_id', this.$store.state.users.newuser.id); 
             formData.append('alamat', this.formdetail.alamat);
             formData.append('motto', this.formdetail.motto);
+            formData.append('departemen_id', this.formdetail.departemen);
             if (this.formdetail.pendidikan != null) {
                 if (this.formdetail.pendidikan.length > 0) {
                     formData.append('pendidikan', this.formdetail.pendidikan); 
