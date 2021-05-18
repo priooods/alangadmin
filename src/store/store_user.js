@@ -1,4 +1,4 @@
-import User from "../api/User";
+import User from "../api/user";
 import cookies from "vue-cookies";
 export default {
   namespaced: true,
@@ -12,7 +12,7 @@ export default {
       User.LoginUser(data).then((res) => {
         if (res.data.error_code == 0) {
           commit("user", res.data.data);
-          cookies.set("token", res.data.data.token);
+          cookies.set("token", res.data.token);
           cookies.set("next", 1);
           return true;
         }
@@ -32,7 +32,6 @@ export default {
       User.UpdateUser(data).then((res) => {
         if (res.data.error_code == 0) {
           cookies.set("next", 1);
-          console.log(res.data.data);
           dispatch("Me");
           return dispatch("AllUsers");
         }
@@ -46,6 +45,7 @@ export default {
     },
     UpdateDetail({ dispatch }, data) {
       User.UpdateDetail(data).then((res) => {
+        console.log(res.data);
         if (res.data.error_code == 0) {
           cookies.set("next", 1);
           dispatch("Me");

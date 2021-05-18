@@ -26,7 +26,7 @@
                 </Upload>
                 <div v-if="this.avatar !== null" class="my-auto ml-3">{{ this.avatar.name }}</div>
             </div>
-            <div class="flex grid grid-rows-1 grid-cols-2 gap-2">
+            <div class="grid grid-rows-1 grid-cols-2 gap-2">
                 <div class="btn-prio px-4 py-1 mt-4" @click="saveinfo">Simpan & Lanjutkan</div>
             </div>
           </div>

@@ -8,6 +8,7 @@ import Proker from "../views/Proker.vue";
 import Profile from "../views/Profile.vue";
 import Department from "../views/Department.vue";
 import Register from "../views/Register.vue";
+import News from "../views/News.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -40,6 +41,11 @@ const routes = [
         path: "department",
         name: "Department",
         component: Department,
+      },
+      {
+        path: "news",
+        name: "News",
+        component: News,
       },
     ],
   },

@@ -33,11 +33,13 @@ export default {
           title: "Department",
           key: "department",
           ellipsis: true,
+          width: 300,
         },
         {
           title: "Motto",
           key: "motto",
           ellipsis: true,
+          width: 300,
         },
         {
           title: "Instagram",
@@ -59,7 +61,6 @@ export default {
         {
           title: "Access",
           key: "access",
-          width: 100,
         },
       ],
     };

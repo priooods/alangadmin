@@ -1,11 +1,13 @@
 <template>
   <div class="department">
-    <div class="flex justify-end w-full">
-      <div class="w-3/6 h-screen md:py-3 md:mr-1">
-        <h1 class="font-bold text-lg">Department</h1>
-        <div class="md:mt-9 mt-5 block" v-if="showeditaccess == 1">
+    <div class="grid grid-cols-1 md:grid-cols-2 min-h-screen">
+      <div class="w-full md:h-screen md:py-3 md:mr-1">
+        <h1 class="font-bold text-lg hidden md:block">Department</h1>
+        <div class="md:mt-9 mt-5 md:block" v-if="showeditaccess == 1">
           <h3 class="cursor-pointer" @click="showeditaccess = 2" v-show="$store.state.users.user.access_id != 6">Edit Akses Anggota</h3>
-          <TableGlobal :totalpage="pagesbydepart" :columns="MyDepartment" :datas="bydepartment" class="md:mt-5 w-full"></TableGlobal>
+          <div class="mt-5 w-full">
+            <TableGlobal :totalpage="pagesbydepart" :columns="MyDepartment" :datas="bydepartment"></TableGlobal>
+          </div>
         </div>
         <div class="md:mt-9 mt-5 block" v-else>
           <div class="flex cursor-pointer w-16 justify-start" @click="showeditaccess = 1; formmodel.access_id = ''; formmodel.id = ''">
@@ -29,7 +31,7 @@
           <div class="mt-7 btn-prio py-2 w-40" @click="simpanaccess">Simpan Access</div>
         </div>
       </div>
-      <div class="h-screen w-3/6 md:ml-1 md:py-3">
+      <div class="md:h-screen w-full md:ml-1 md:py-3">
         <div class="flex justify-center md:mt-20 md:px-3 text-center">
           <p>Fitur notes dan chatt untuk departement kamu sedang dalam developing. Mohon sabar menunggu informasi selanjutnya</p>
         </div>

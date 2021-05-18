@@ -1,14 +1,16 @@
 <template>
-  <div class="home layout md:py-3">
+  <div class="home layout md:py-3 min-h-screen">
     <div class="md:flex justify-end pt-4 md:pt-0">
       <h1 class="font-bold text-xl mr-auto hidden md:block">Dashboard</h1>
-      <h6 class="hidden md:block my-auto font-medium">{{$store.state.users.user.fullname}}</h6>
-      <vs-avatar circle class="hidden md:block mr-4 ml-2" size="25">
-        <img v-if="$store.state.users.user.avatar" :src="'https://jajandong.com/alangdatabase/public/images/' + $store.state.users.user.avatar" alt="">
-        <img v-else src="../assets/avatar.png" alt="">
-      </vs-avatar>
+      <div class="flex" v-if="$store.state.users.user">
+        <h6 class="hidden md:block my-auto font-medium">{{$store.state.users.user.fullname}}</h6>
+        <vs-avatar circle class="hidden md:block mr-4 ml-2" size="25">
+          <img v-if="$store.state.users.user.avatar != null" :src="'http://priodwisembodo.online/alangdatabase/public/images/user/' + $store.state.users.user.avatar" alt="">
+          <img v-else src="../assets/avatar.png" alt="">
+        </vs-avatar>
+      </div>
     </div>
-    <div class="mt-5 grid md:grid-cols-4 grid-rows-4 md:grid-rows-1 grid-flow-col gap-2">
+    <div class="mt-5 grid md:grid-cols-4 grid-rows-3 md:grid-rows-1 grid-flow-col gap-2">
       <div class="p-3 cards-box" :class="{ active: boxactive == 1 }">
         <p class="font-semibold text-xs">Total Proker Alang Terdaftar</p>
         <h5 class="font-semibold text-base mt-5">{{prokers.length}} Proker</h5>
@@ -22,7 +24,7 @@
         <h5 class="font-semibold text-base mt-5">{{department.length}} Department</h5>
       </div>
     </div>
-    <div class="grid grid-rows-1 mt-10" v-if="boxactive == 2">
+    <div class="grid grid-rows-1 mt-5 md:mt-10" v-if="boxactive == 2">
       <p class="mb-5">Lihat Semua Anggota yang terdaftar. Tap pada item Instagram untuk pergi ke halaman profile instagram</p>
       <Table border stripe :columns="Anggota" size="small" :data="tableanggota">
         <template class="cursor-pointer" slot-scope="{ row }" slot="sosmed">
@@ -35,7 +37,7 @@
           </div>
       </div>
     </div>
-    <div class="grid grid-rows-1 mt-10" v-else>
+    <div class="grid grid-rows-1 mt-5 md:mt-10" v-else>
       <p class="mb-5">Lihat Semua Department yang terdaftar. Tap pada item untuk melihat detail pada baris table</p>
       <table-department :totalpage="totalpage"
         :columns="Department" 
@@ -86,6 +88,7 @@ export default {
   },
   created() {
     this.$store.dispatch('users/AllUsers');
+    this.$store.dispatch('users/Me');
     this.$store.dispatch('department/DepartmentAll');
     this.$store.dispatch('proker/ProkerAll');
   },

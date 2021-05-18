@@ -2,9 +2,7 @@
   <div class="accountdetail">
       <Form ref="formdetail" :rules="rulesForm" :model="formdetail" label-position="top" class="md:grid md:grid-rows-4 md:grid-cols-2 md:gap-2">
         <FormItem prop="department" label="Department">
-          <Select :disabled="true" v-model="formdetail.departemen">
-            <Option v-for="item in department" :value="item.value" :key="item.value">{{ item.label }}</Option>
-          </Select>
+          <Input :disabled="true" v-model="formdetail.departemen" placeholder="alamat tinggal kamu..."></Input>
         </FormItem>
         <FormItem prop="alamat" label="Alamat">
             <Input :readonly="disable" v-model="formdetail.alamat" placeholder="alamat tinggal kamu..."></Input>
@@ -36,12 +34,12 @@
 <script>
 import Notifikasi from '../model/Notifikasi';
 export default {
-    mixins: [Notifikasi],
-    props:{
-        formdetail: null,
-        disable: Boolean
-    },
-    data() {
+  mixins: [Notifikasi],
+  props:{
+      formdetail: null,
+      disable: Boolean
+  },
+  data() {
     return {
       showedit: false,
       department: [
@@ -60,6 +58,16 @@ export default {
             { required: true, message: 'Motto tidak boleh kosong !', trigger: 'blur' }
         ],
       },
+      formupdate: {
+        token: this.$cookies.get('token'),
+        user_id: this.$store.state.users.user.id,
+        alamat: null,
+        motto: null,
+        pendidikan: null,
+        pekerjaan: null,
+        sosmed: null,
+        contact: null
+      }
     }
   },
   methods: {
@@ -67,31 +75,13 @@ export default {
       this.helper_loading("Mengupdate Data..");
       this.$refs['formdetail'].validate((valid) => {
           if (valid) {
-            var formData = new FormData();
-            formData.append('user_id', this.$store.state.users.user.id); 
-            formData.append('alamat', this.formdetail.alamat);
-            formData.append('motto', this.formdetail.motto);
-            if (this.formdetail.pendidikan != null) {
-              if (this.formdetail.pendidikan.length > 0) {
-                formData.append('pendidikan', this.formdetail.pendidikan); 
-              }
-            }
-            if (this.formdetail.pekerjaan != null) {
-              if (this.formdetail.pekerjaan.length > 0) {
-                formData.append('pekerjaan', this.formdetail.pekerjaan);
-              } 
-            }
-            if (this.formdetail.sosmed != null) {
-              if (this.formdetail.sosmed.length > 0) {
-                formData.append('sosmed', this.formdetail.sosmed);
-              }
-            }
-            if (this.formdetail.contact != null) {
-              if (this.formdetail.contact.length > 0) {
-                formData.append('contact', this.formdetail.contact);
-              }
-            }
-            this.$store.dispatch('users/UpdateDetail', formData);
+            this.formupdate.alamat = this.formdetail.alamat;
+            this.formupdate.motto = this.formdetail.motto;
+            this.formupdate.pendidikan = this.formdetail.pendidikan;
+            this.formupdate.pekerjaan = this.formdetail.pekerjaan;
+            this.formupdate.sosmed = this.formdetail.sosmed;
+            this.formupdate.contact = this.formdetail.contact;
+            this.$store.dispatch('users/UpdateDetail', this.formupdate);
             this.loading.close();
             return this.helper_success("Berhasil Di Update");
           } else {

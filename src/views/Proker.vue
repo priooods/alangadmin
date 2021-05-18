@@ -1,13 +1,13 @@
 <template>
     <div class="proker">
-        <div v-show="showing == 1" class="md:py-3">
+        <div v-show="showing == 1" class="md:py-3 min-h-screen">
             <h1 class="font-bold text-xl hidden md:block">Proker</h1>
             <p class="hidden md:block">Tap item untuk melihat detail dan memberi komentar</p>
-            <div class="md:flex md:mt-7">
+            <div class="md:flex md:mt-7 mt-5">
                 <div class="md:w-5/6 md:pb-5">
-                    <div class="grid grid-cols-3 gap-2">
+                    <div class="grid md:grid-cols-3 gap-2 grid-cols-1">
                         <div v-for="(item,index) in $store.state.proker.prokerall" v-bind:key="index">
-                            <div class="cards-box md:p-3 h-auto" @click="showdetail(item); showing = 3">
+                            <div class="cards-box p-3 h-auto" @click="showdetail(item); showing = 3">
                                 <h5 class="font-bold text-sm">{{item.judul}}</h5>
                                 <p class="md:mt-1">{{item.department.departemen}}</p>
                                 <p class="md:mt-2">{{item.ketua}}</p>
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-1/6 md:ml-4 h-full sticky top-15" v-if="$store.state.users.user.access_id == 2 
+                <div class="md:w-1/6 w-full md:ml-4 mt-10 h-full md:sticky top-15" v-if="$store.state.users.user.access_id == 2 
                 || $store.state.users.user.access_id == 4 || $store.state.users.user.access_id == 5 || $store.state.users.user.access_id == 1">
                     <div class="btn-prio py-2" @click="showing = 2">Tambah Proker</div>
                 </div>
@@ -41,6 +41,9 @@ export default {
             showing: 1,
             dataproker: []
         }
+    },
+    mounted() {
+        console.log(this.$store.state.proker.prokerall);
     },
     methods: {
         closeform(value){

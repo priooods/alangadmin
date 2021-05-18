@@ -22,6 +22,7 @@ export default {
     },
     AddKomentar({ dispatch }, form) {
       Proker.AddKomentar(form).then((data) => {
+        console.log(data.data);
         if (data.data.error_code == 0) {
           return dispatch("ProkerAll");
         }
